@@ -13,7 +13,9 @@
         rel="stylesheet">
 
     <!-- Custom Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/booking.css">
 </head>
 
 <body>
@@ -203,14 +205,86 @@
                         FERNANDO FUNKE
                     </div>
                 </div>
-                <div class="contact-form-placeholder">
-                    <!-- Decor element or simple form -->
-                    <form onsubmit="event.preventDefault();" class="simple-form">
-                        <input type="text" placeholder="Nombre" required>
-                        <input type="email" placeholder="Email" required>
-                        <textarea rows="4" placeholder="Mensaje"></textarea>
-                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                    </form>
+                <div class="booking-widget" id="booking-widget"
+                    style="background: #1a1a1a; padding: 30px; border-radius: 20px; border: 1px solid #333;">
+
+
+
+                    <!-- Single Step Form -->
+                    <div id="booking-form-container">
+                        <h3 class="booking-title">Agendar Cita</h3>
+
+                        <div class="form-group">
+                            <label class="booking-label">Tus Datos</label>
+
+                            <div class="input-group">
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="client-name" placeholder="Nombre Completo" class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fas fa-phone input-icon"></i>
+                                <input type="tel" id="client-phone" placeholder="Número de Teléfono"
+                                    class="form-control">
+                            </div>
+
+                            <div class="input-group">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="client-email" placeholder="Email" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="booking-label">Detalles de la Cita</label>
+
+                            <div class="input-group">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                                <input type="date" id="booking-date" class="form-control">
+                            </div>
+                        </div>
+
+                        <div id="loading-slots" class="spinner" style="display: none;"></div>
+
+                        <div id="slots-section" style="display: none;">
+                            <label class="booking-label">Selecciona Hora</label>
+                            <div class="input-group">
+                                <i class="fas fa-clock input-icon"></i>
+                                <select id="booking-time-select" class="form-control" style="cursor: pointer;">
+                                    <option value="">Selecciona una hora disponible...</option>
+                                    <!-- Options injected here -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Notes Field -->
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="booking-label">Notas / Comentarios (Opcional)</label>
+                            <div class="input-group">
+                                <i class="fas fa-comment input-icon" style="top: 20px;"></i>
+                                <textarea id="client-notes" placeholder="Alguna petición especial..."
+                                    class="form-control" rows="2" style="resize: none;"></textarea>
+                            </div>
+                        </div>
+
+                        <button id="confirm-booking-btn" class="btn btn-primary"
+                            style="width: 100%; opacity: 0.6; cursor: not-allowed;" disabled>
+                            Confirmar Cita
+                        </button>
+                    </div>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="booking-success" style="display:none; text-align: center; padding: 20px 0;">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 style="color: white; margin-bottom: 15px; font-family: 'Playfair Display', serif;">¡Cita
+                            Reservada!</h3>
+                        <p style="color: #ccc; margin-bottom: 30px;">Hemos recibido tus datos correctamente.</p>
+                        <button onclick="location.reload()" class="btn btn-outline">Reservar otra vez</button>
+                    </div>
+
+
+
                 </div>
             </div>
         </section>
@@ -224,6 +298,9 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/booking.js"></script>
 </body>
 
 </html>
